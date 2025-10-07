@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Distance Converter</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #3a8dff, #6fd6ff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .converter {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      transition: transform 0.3s ease;
+    }
+
+    .converter:hover {
+      transform: scale(1.02);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #3a8dff;
+      box-shadow: 0 0 8px rgba(58, 141, 255, 0.3);
+    }
+
+    button {
+      background-color: #3a8dff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #2f7de2;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    @media (max-width: 480px) {
+      .converter {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="converter">
+    <h2>Distance Converter</h2>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+    <select id="convertType">
+      <option value="km-to-miles">Kilometers → Miles</option>
+      <option value="miles-to-km">Miles → Kilometers</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <div class="result" id="resultBox">👁️‍🗨️Ready to convert!</div>
+  </div>
+
+  <script>
+    function convert() {
+      const value = parseFloat(document.getElementById("inputValue").value);
+      const type = document.getElementById("convertType").value;
+      const resultBox = document.getElementById("resultBox");
+
+      if (isNaN(value)) {
+        resultBox.innerText = "⚠️ Please enter a valid number.";
+        return;
+      }
+
+      let result = 0;
+      if (type === "km-to-miles") {
+        result = value * 0.621371;
+        resultBox.innerText = `📏 ${value} km = ${result.toFixed(3)} miles`;
+      } else {
+        result = value * 1.60934;
+        resultBox.innerText = `📏 ${value} miles = ${result.toFixed(3)} km`;
+      }
+    }
+  </script>
+</body>
+</html>
